@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+        <ion-button (click)="onCancel()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    <ion-title> NEW CHALLENGE </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- title: this.challengeForm.value.title,
+description: this.challengeForm.value.description,
+icon: this.challengeForm.value.icon,
+unit: new Date(this.challengeForm.value.unit),
+amount: new Date(this.challengeForm.value.amount),
+due: new Date(this.challengeForm.value.due) -->
+
+<ion-content class="ion-text-center ion-padding" >
+  <form [formGroup]="challengeForm" (ngSubmit)="onCreateChallenge()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Title</ion-label>
+            <ion-input
+              type="text"
+              formControlName="title"
+              ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Description</ion-label>
+            <ion-input type="text" formControlName="description"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label>Icon</ion-label>
+            <ion-button (click)="presentPopover($event)" expand="block" fill="clear" shape="round">
+              Select Icon
+            </ion-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Unit</ion-label>
+            <ion-input type="text" formControlName="unit"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label>Due</ion-label>
+            <ion-datetime
+            display-format="MMM DD YYYY"
+              picker-format="YY MMM DD"
+              formControlName=due
+              ></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+            <ion-item>
+              <ion-label>Select: Users to bet</ion-label>
+              <ion-select class="custom-options" multiple="true">
+                <ion-select-option *ngFor="let user of users" value="{{user.id}}">{{ user.email }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="3" offset-sm="3">
+          <ion-button type="submit" color="primary" expand="block">
+            Create!
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </form>
+  </ion-content>
